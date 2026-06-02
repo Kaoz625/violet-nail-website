@@ -1,0 +1,1971 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Violet Nail Beauty Salon — Brooklyn's Premier Nail Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── TOKENS ─────────────────────────────────────────── */
+    :root {
+      --violet:       #4a2c6e;
+      --violet-light: #7c5ba0;
+      --violet-soft:  #c4a8d8;
+      --rose:         #c47a8a;
+      --rose-light:   #e8b4be;
+      --rose-blush:   #f5dde3;
+      --cream:        #faf6f1;
+      --cream-dark:   #f0e8df;
+      --charcoal:     #2a2028;
+      --mid:          #6e5f6b;
+      --white:        #ffffff;
+
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans:  'Jost', system-ui, sans-serif;
+
+      --radius:   12px;
+      --radius-lg: 24px;
+      --shadow: 0 4px 32px rgba(74, 44, 110, 0.10);
+      --shadow-lg: 0 12px 60px rgba(74, 44, 110, 0.18);
+
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      --transition: 0.55s var(--ease);
+    }
+
+    /* ─── RESET ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body {
+      background: var(--cream);
+      color: var(--charcoal);
+      font-family: var(--font-sans);
+      font-weight: 300;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    ul { list-style: none; }
+
+    /* ─── SCROLL REVEAL ──────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(36px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    /* staggered children */
+    .stagger > * { transition-delay: 0s; }
+    .stagger > *:nth-child(1) { transition-delay: 0.05s; }
+    .stagger > *:nth-child(2) { transition-delay: 0.15s; }
+    .stagger > *:nth-child(3) { transition-delay: 0.25s; }
+    .stagger > *:nth-child(4) { transition-delay: 0.35s; }
+    .stagger > *:nth-child(5) { transition-delay: 0.45s; }
+    .stagger > *:nth-child(6) { transition-delay: 0.55s; }
+
+    /* ─── UTILITY ────────────────────────────────────────── */
+    .container {
+      width: 100%;
+      max-width: 1120px;
+      margin-inline: auto;
+      padding-inline: 24px;
+    }
+    .section { padding-block: 96px; }
+    .section-label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--violet);
+    }
+    .section-title em { font-style: italic; color: var(--rose); }
+    .divider {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--rose), var(--violet-soft));
+      border-radius: 2px;
+      margin-block: 24px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 34px;
+      border-radius: 40px;
+      font-family: var(--font-sans);
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: all 0.3s var(--ease);
+      border: none;
+    }
+    .btn-primary {
+      background: var(--violet);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(74, 44, 110, 0.35);
+    }
+    .btn-primary:hover {
+      background: var(--violet-light);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(74, 44, 110, 0.45);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--violet);
+      border: 1.5px solid var(--violet);
+    }
+    .btn-outline:hover {
+      background: var(--violet);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+    .btn-rose {
+      background: var(--rose);
+      color: var(--white);
+      box-shadow: 0 6px 24px rgba(196, 122, 138, 0.35);
+    }
+    .btn-rose:hover {
+      background: #b5697a;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 32px rgba(196, 122, 138, 0.45);
+    }
+
+    /* ─── NAV ────────────────────────────────────────────── */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 20px 0;
+      transition: background 0.4s var(--ease), padding 0.4s var(--ease), box-shadow 0.4s var(--ease);
+    }
+    .nav.scrolled {
+      background: rgba(250, 246, 241, 0.96);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 14px 0;
+      box-shadow: 0 2px 24px rgba(74, 44, 110, 0.08);
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+    }
+    .nav-logo span:first-child {
+      font-family: var(--font-serif);
+      font-size: 1.4rem;
+      font-weight: 500;
+      color: var(--violet);
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span:last-child {
+      font-family: var(--font-sans);
+      font-size: 9px;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 36px;
+    }
+    .nav-links a {
+      font-size: 12px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+      position: relative;
+      transition: color 0.3s;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: var(--rose);
+      transition: width 0.3s var(--ease);
+    }
+    .nav-links a:hover { color: var(--violet); }
+    .nav-links a:hover::after { width: 100%; }
+    .nav-cta { margin-left: 12px; }
+    .nav-cta .btn { padding: 10px 22px; font-size: 11px; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 6px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 1.5px;
+      background: var(--violet);
+      transition: all 0.3s var(--ease);
+      border-radius: 2px;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      gap: 28px;
+      padding: 32px 24px 40px;
+      background: var(--cream);
+      border-top: 1px solid var(--cream-dark);
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 14px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--charcoal);
+      font-weight: 400;
+    }
+
+    /* ─── HERO ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 140px 64px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--rose);
+    }
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2.8rem, 5.5vw, 5rem);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--violet);
+      margin-bottom: 24px;
+    }
+    .hero-title em {
+      font-style: italic;
+      color: var(--rose);
+    }
+    .hero-sub {
+      font-size: 15px;
+      color: var(--mid);
+      max-width: 400px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-badge {
+      margin-top: 56px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .badge-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--violet), var(--violet-light));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .badge-icon svg { width: 22px; height: 22px; fill: white; }
+    .badge-text span:first-child {
+      display: block;
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: var(--violet);
+      line-height: 1.2;
+    }
+    .badge-text span:last-child {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      color: var(--mid);
+      text-transform: uppercase;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+    /* Decorative gradient art panel */
+    .hero-art {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 60% at 60% 40%, rgba(124, 91, 160, 0.28) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 70% at 80% 70%, rgba(196, 122, 138, 0.22) 0%, transparent 60%),
+        linear-gradient(145deg, var(--cream-dark) 0%, var(--rose-blush) 40%, #e8d0f0 80%, var(--cream-dark) 100%);
+    }
+    /* Floating abstract shapes */
+    .hero-shape-1 {
+      position: absolute;
+      top: 10%;
+      left: 15%;
+      width: 280px;
+      height: 380px;
+      border-radius: 60% 40% 55% 45% / 50% 60% 40% 50%;
+      background: linear-gradient(135deg, rgba(74, 44, 110, 0.18), rgba(196, 122, 138, 0.25));
+      backdrop-filter: blur(2px);
+      animation: floatA 8s ease-in-out infinite;
+    }
+    .hero-shape-2 {
+      position: absolute;
+      bottom: 12%;
+      right: 10%;
+      width: 200px;
+      height: 260px;
+      border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%;
+      background: linear-gradient(225deg, rgba(196, 122, 138, 0.3), rgba(74, 44, 110, 0.15));
+      animation: floatB 10s ease-in-out infinite;
+    }
+    .hero-shape-3 {
+      position: absolute;
+      top: 30%;
+      right: 20%;
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid rgba(196, 122, 138, 0.4);
+      animation: floatC 7s ease-in-out infinite;
+    }
+    .hero-shape-4 {
+      position: absolute;
+      top: 55%;
+      left: 25%;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.6);
+    }
+    /* Nail polish bottle SVG decoration */
+    .hero-polish {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      z-index: 2;
+    }
+    /* Text overlay */
+    .hero-quote {
+      position: absolute;
+      bottom: 48px;
+      left: 32px;
+      right: 32px;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--violet);
+      text-align: center;
+      opacity: 0.75;
+      z-index: 3;
+    }
+    /* floating dots grid */
+    .dots-grid {
+      position: absolute;
+      top: 48px;
+      right: 48px;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      z-index: 1;
+    }
+    .dots-grid span {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(74, 44, 110, 0.3);
+      display: block;
+    }
+
+    @keyframes floatA {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(-18px) rotate(4deg); }
+    }
+    @keyframes floatB {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50%       { transform: translateY(14px) rotate(-5deg); }
+    }
+    @keyframes floatC {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.08); }
+    }
+
+    /* ─── MARQUEE STRIP ──────────────────────────────────── */
+    .marquee-strip {
+      background: var(--violet);
+      padding: 14px 0;
+      overflow: hidden;
+    }
+    .marquee-track {
+      display: flex;
+      gap: 0;
+      animation: scroll-left 30s linear infinite;
+      white-space: nowrap;
+    }
+    .marquee-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 14px;
+      padding-inline: 32px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.85);
+    }
+    .marquee-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--rose-light);
+      flex-shrink: 0;
+    }
+    @keyframes scroll-left {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ─── ABOUT ──────────────────────────────────────────── */
+    .about { background: var(--white); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .about-visual {
+      position: relative;
+    }
+    .about-card-main {
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      background: linear-gradient(160deg, var(--rose-blush) 0%, #e0c8ef 50%, var(--violet-soft) 100%);
+      position: relative;
+    }
+    .about-card-main::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M50 10 C60 10 70 20 70 30 C70 40 60 50 50 50 C40 50 30 40 30 30 C30 20 40 10 50 10Z' fill='rgba(74,44,110,0.06)'/%3E%3C/svg%3E") repeat;
+    }
+    /* Nail art abstract inside about card */
+    .about-art {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .about-art-inner {
+      position: relative;
+      width: 200px;
+      height: 260px;
+    }
+    .nail-shape {
+      position: absolute;
+      border-radius: 50% 50% 40% 40%;
+      background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(196,122,138,0.6) 100%);
+      box-shadow: inset 0 -4px 12px rgba(74, 44, 110, 0.2), 0 8px 32px rgba(74,44,110,0.15);
+    }
+    .nail-shape:nth-child(1) { width: 36px; height: 52px; top: 10%; left: 5%; transform: rotate(-8deg); background: linear-gradient(180deg, #f5dde3 0%, #c47a8a 100%); }
+    .nail-shape:nth-child(2) { width: 32px; height: 48px; top: 2%; left: 22%; transform: rotate(-3deg); background: linear-gradient(180deg, #e8d0f0 0%, #7c5ba0 100%); }
+    .nail-shape:nth-child(3) { width: 38px; height: 56px; top: 0%; left: 40%; transform: rotate(1deg); background: linear-gradient(180deg, #ffffff 0%, #4a2c6e 100%); }
+    .nail-shape:nth-child(4) { width: 32px; height: 48px; top: 3%; left: 60%; transform: rotate(5deg); background: linear-gradient(180deg, #fae0e8 0%, #c47a8a 100%); }
+    .nail-shape:nth-child(5) { width: 28px; height: 42px; top: 12%; left: 76%; transform: rotate(10deg); background: linear-gradient(180deg, #e0c8ef 0%, #7c5ba0 100%); }
+    /* Polish bottle */
+    .polish-bottle {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .about-floater {
+      position: absolute;
+      bottom: -16px;
+      right: -16px;
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 20px 24px;
+      box-shadow: var(--shadow-lg);
+      min-width: 160px;
+    }
+    .about-floater-number {
+      font-family: var(--font-serif);
+      font-size: 2.4rem;
+      font-weight: 500;
+      color: var(--violet);
+      line-height: 1;
+    }
+    .about-floater-label {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+      margin-top: 4px;
+    }
+    .about-floater-2 {
+      position: absolute;
+      top: 24px;
+      right: -24px;
+      background: var(--violet);
+      border-radius: var(--radius);
+      padding: 16px 20px;
+      box-shadow: var(--shadow-lg);
+      color: white;
+    }
+    .about-floater-2 .about-floater-number { color: var(--rose-light); font-size: 1.6rem; }
+    .about-floater-2 .about-floater-label { color: rgba(255,255,255,0.75); }
+
+    .about-content {}
+    .about-text {
+      color: var(--mid);
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 20px;
+    }
+    .about-pillars {
+      margin-top: 36px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .pillar {
+      padding: 20px;
+      background: var(--cream);
+      border-radius: var(--radius);
+      border-left: 3px solid var(--violet-soft);
+    }
+    .pillar-title {
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--violet);
+      margin-bottom: 6px;
+    }
+    .pillar-desc { font-size: 13px; color: var(--mid); }
+
+    /* ─── SERVICES ───────────────────────────────────────── */
+    .services { background: var(--cream); }
+    .services-header {
+      text-align: center;
+      max-width: 560px;
+      margin-inline: auto;
+      margin-bottom: 64px;
+    }
+    .services-header .divider { margin-inline: auto; }
+    .services-tabs {
+      display: flex;
+      gap: 8px;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 48px;
+    }
+    .tab-btn {
+      padding: 9px 22px;
+      border-radius: 30px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: 1.5px solid var(--violet-soft);
+      background: transparent;
+      color: var(--mid);
+      transition: all 0.3s;
+      font-family: var(--font-sans);
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: var(--violet);
+      color: white;
+      border-color: var(--violet);
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      box-shadow: var(--shadow);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--violet), var(--rose));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.featured {
+      background: linear-gradient(160deg, var(--violet) 0%, var(--violet-light) 100%);
+      color: white;
+    }
+    .service-card.featured .service-name { color: white; }
+    .service-card.featured .service-desc { color: rgba(255,255,255,0.75); }
+    .service-card.featured .service-price { color: var(--rose-light); }
+    .service-card.featured::before { display: none; }
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      font-size: 22px;
+    }
+    .service-card.featured .service-icon {
+      background: rgba(255,255,255,0.15);
+    }
+    .service-name {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--violet);
+      margin-bottom: 8px;
+    }
+    .service-desc {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+    .service-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+    .service-price {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--violet);
+    }
+    .service-price-from {
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .service-card.featured .service-price-from { color: rgba(255,255,255,0.6); }
+
+    /* ─── GALLERY ────────────────────────────────────────── */
+    .gallery { background: var(--white); }
+    .gallery-header {
+      text-align: center;
+      max-width: 520px;
+      margin-inline: auto;
+      margin-bottom: 56px;
+    }
+    .gallery-header .divider { margin-inline: auto; }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 200px);
+      gap: 12px;
+    }
+    .gallery-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+    .gallery-item:first-child {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    .gallery-item:nth-child(4) { grid-column: span 2; }
+    .gallery-art {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s var(--ease);
+    }
+    .gallery-item:hover .gallery-art { transform: scale(1.06); }
+
+    /* Gradient art for each gallery cell */
+    .g1 { background: linear-gradient(135deg, #e0c8ef 0%, #c47a8a 40%, #4a2c6e 100%); }
+    .g2 { background: linear-gradient(160deg, #f5dde3 0%, #e8b4be 50%, #c47a8a 100%); }
+    .g3 { background: linear-gradient(200deg, #4a2c6e 0%, #7c5ba0 50%, #c4a8d8 100%); }
+    .g4 { background: linear-gradient(120deg, #fae0e8 0%, #c47a8a 40%, #7c5ba0 100%); }
+    .g5 { background: linear-gradient(180deg, #c4a8d8 0%, #4a2c6e 100%); }
+
+    /* decorative nail art in each gradient cell */
+    .gallery-art {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gallery-art-text {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      font-size: 0.85rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* SVG nail in gallery cells */
+    .gallery-nail-svg {
+      opacity: 0.25;
+      position: absolute;
+    }
+
+    /* ─── REVIEWS ────────────────────────────────────────── */
+    .reviews { background: var(--cream); }
+    .reviews-header {
+      text-align: center;
+      max-width: 520px;
+      margin-inline: auto;
+      margin-bottom: 60px;
+    }
+    .reviews-header .divider { margin-inline: auto; }
+    .stars {
+      display: flex;
+      gap: 3px;
+      color: #e8b04a;
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+    .reviews-summary {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .reviews-avg {
+      font-family: var(--font-serif);
+      font-size: 3.6rem;
+      font-weight: 300;
+      color: var(--violet);
+      line-height: 1;
+    }
+    .reviews-meta span:first-child {
+      display: block;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+    .reviews-meta span:last-child {
+      display: block;
+      font-size: 12px;
+      color: var(--mid);
+      margin-top: 4px;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .review-card::before {
+      content: '"';
+      font-family: var(--font-serif);
+      font-size: 5rem;
+      font-weight: 300;
+      color: var(--violet-soft);
+      position: absolute;
+      top: 8px;
+      left: 20px;
+      line-height: 1;
+      opacity: 0.5;
+    }
+    .review-text {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.8;
+      margin-top: 24px;
+      margin-bottom: 24px;
+      font-style: italic;
+    }
+    .reviewer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .reviewer-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-serif);
+      font-size: 1rem;
+      font-weight: 500;
+      color: white;
+      flex-shrink: 0;
+    }
+    .av1 { background: linear-gradient(135deg, var(--violet), var(--violet-light)); }
+    .av2 { background: linear-gradient(135deg, var(--rose), #e8b4be); }
+    .av3 { background: linear-gradient(135deg, var(--violet-light), var(--rose)); }
+    .reviewer-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .reviewer-via {
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.08em;
+    }
+    .bbb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 48px;
+      padding: 16px 28px;
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .bbb-badge-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--charcoal);
+    }
+    .bbb-badge-text span {
+      font-size: 12px;
+      color: var(--mid);
+    }
+    .bbb-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #003087, #0062cc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 14px;
+      font-family: var(--font-sans);
+      letter-spacing: -0.05em;
+      flex-shrink: 0;
+    }
+    .reviews-bbb-center { text-align: center; }
+
+    /* ─── TEAM ───────────────────────────────────────────── */
+    .team { background: var(--white); }
+    .team-header {
+      text-align: center;
+      max-width: 500px;
+      margin-inline: auto;
+      margin-bottom: 60px;
+    }
+    .team-header .divider { margin-inline: auto; }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+    .team-card {
+      text-align: center;
+    }
+    .team-avatar {
+      width: 100%;
+      aspect-ratio: 1;
+      border-radius: var(--radius-lg);
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .avatar-bg {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 12px;
+    }
+    .ta1 { background: linear-gradient(160deg, #e8d0f0 0%, #c4a8d8 50%, #7c5ba0 100%); }
+    .ta2 { background: linear-gradient(160deg, #fae0e8 0%, #e8b4be 50%, #c47a8a 100%); }
+    .ta3 { background: linear-gradient(160deg, #c4a8d8 0%, #7c5ba0 40%, #4a2c6e 100%); }
+    .ta4 { background: linear-gradient(160deg, #f5dde3 0%, #c47a8a 50%, #a05070 100%); }
+    .avatar-initials {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 300;
+      color: rgba(255,255,255,0.9);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .team-name {
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--violet);
+      margin-bottom: 4px;
+    }
+    .team-role {
+      font-size: 11px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--rose);
+    }
+
+    /* ─── BOOKING / CTA ──────────────────────────────────── */
+    .booking {
+      background: linear-gradient(135deg, var(--violet) 0%, #2d1745 60%, #4a1e3a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .booking::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 80% at 80% 50%, rgba(196, 122, 138, 0.2) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 60% at 10% 70%, rgba(124, 91, 160, 0.25) 0%, transparent 60%);
+    }
+    .booking-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      padding-block: 96px;
+    }
+    .booking-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 16px;
+    }
+    .booking-title {
+      font-family: var(--font-serif);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300;
+      color: white;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .booking-title em { font-style: italic; color: var(--rose-light); }
+    .booking-sub {
+      color: rgba(255,255,255,0.65);
+      font-size: 15px;
+      margin-bottom: 40px;
+      line-height: 1.8;
+    }
+    .booking-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .booking-info {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+    .info-title {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      color: white;
+      margin-bottom: 28px;
+      font-weight: 400;
+    }
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .info-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      background: rgba(196,122,138,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon svg { width: 16px; height: 16px; fill: var(--rose-light); }
+    .info-label {
+      font-size: 10px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 3px;
+    }
+    .info-value {
+      font-size: 15px;
+      color: rgba(255,255,255,0.9);
+      font-weight: 400;
+    }
+    .hours-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6px 16px;
+      margin-top: 8px;
+    }
+    .hours-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .hours-row strong { color: rgba(255,255,255,0.85); font-weight: 400; }
+
+    /* ─── FOOTER ─────────────────────────────────────────── */
+    .footer {
+      background: var(--charcoal);
+      padding-block: 48px 32px;
+    }
+    .footer-inner {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 60px;
+      margin-bottom: 40px;
+    }
+    .footer-brand-name {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 400;
+      color: var(--cream);
+      margin-bottom: 4px;
+    }
+    .footer-brand-sub {
+      font-size: 10px;
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 16px;
+    }
+    .footer-brand-desc {
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.8;
+      max-width: 280px;
+    }
+    .footer-col-title {
+      font-size: 10px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--rose-light);
+      margin-bottom: 20px;
+    }
+    .footer-links { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links a {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--rose-light); }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding-top: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: gap;
+      gap: 12px;
+    }
+    .footer-bottom-left {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      line-height: 1.6;
+    }
+    .footer-bottom-left a {
+      color: var(--rose-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .footer-bottom-right {
+      font-size: 11px;
+      color: rgba(255,255,255,0.25);
+      text-align: right;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .gallery-item:first-child { grid-column: span 2; }
+      .gallery-item:nth-child(4) { grid-column: span 1; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .section { padding-block: 64px; }
+
+      /* Nav */
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      /* Hero */
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: unset;
+      }
+      .hero-left {
+        padding: 120px 28px 48px;
+        text-align: center;
+      }
+      .hero-eyebrow { justify-content: center; }
+      .hero-eyebrow::before { display: none; }
+      .hero-sub { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-badge { justify-content: center; }
+      .hero-right {
+        height: 320px;
+      }
+
+      /* About */
+      .about-grid { grid-template-columns: 1fr; gap: 48px; }
+      .about-floater-2 { right: 0; }
+      .about-pillars { grid-template-columns: 1fr; }
+
+      /* Services */
+      .services-grid { grid-template-columns: 1fr; }
+
+      /* Gallery */
+      .gallery-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .gallery-item:first-child { grid-column: span 2; }
+      .gallery-item:nth-child(4) { grid-column: span 2; }
+
+      /* Reviews */
+      .reviews-grid { grid-template-columns: 1fr; }
+
+      /* Team */
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+
+      /* Booking */
+      .booking-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        padding-block: 64px;
+      }
+
+      /* Footer */
+      .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+      .footer-bottom { flex-direction: column; align-items: flex-start; }
+      .footer-bottom-right { text-align: left; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 2.4rem; }
+      .team-grid { grid-template-columns: repeat(2, 1fr); }
+      .booking-actions { flex-direction: column; }
+      .booking-actions .btn { text-align: center; justify-content: center; }
+    }
+
+    /* ─── SCROLL INDICATOR ───────────────────────────────── */
+    .scroll-indicator {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      animation: bounce 2.5s ease-in-out infinite;
+      z-index: 10;
+    }
+    .scroll-indicator span {
+      font-size: 9px;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mid);
+    }
+    .scroll-mouse {
+      width: 22px;
+      height: 34px;
+      border: 1.5px solid var(--violet-soft);
+      border-radius: 12px;
+      position: relative;
+    }
+    .scroll-mouse::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 3px;
+      height: 6px;
+      background: var(--violet-soft);
+      border-radius: 2px;
+      animation: scroll-dot 2.5s ease-in-out infinite;
+    }
+    @keyframes scroll-dot {
+      0%, 100% { top: 6px; opacity: 1; }
+      50%       { top: 14px; opacity: 0.3; }
+    }
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50%       { transform: translateX(-50%) translateY(6px); }
+    }
+
+    /* ─── HERO DECORATIVE NUMBER ─────────────────────────── */
+    .hero-deco-number {
+      position: absolute;
+      top: 40%;
+      right: 20px;
+      font-family: var(--font-serif);
+      font-size: 9rem;
+      font-weight: 300;
+      color: rgba(74, 44, 110, 0.06);
+      line-height: 1;
+      user-select: none;
+      pointer-events: none;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════ NAV ══════════════════════ -->
+<nav class="nav" id="mainNav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <span>Violet Nail</span>
+        <span>Beauty Salon · Brooklyn</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">Our Story</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:7184848020" class="btn btn-primary">Book Now</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#about">Our Story</a>
+    <a href="#services">Services</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#contact">Contact</a>
+    <a href="tel:7184848020" class="btn btn-primary">Book Now</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════ HERO ═════════════════════ -->
+<section class="hero" id="home">
+  <div class="hero-left">
+    <div class="hero-eyebrow reveal">Flatbush Ave, Brooklyn · Since 2014</div>
+    <h1 class="hero-title reveal">
+      Where Nails<br>
+      Become <em>Art.</em>
+    </h1>
+    <p class="hero-sub reveal">
+      Brooklyn's most loved nail studio. Precision craftsmanship, luxury products,
+      and a serene escape — right in the heart of Flatbush.
+    </p>
+    <div class="hero-actions reveal">
+      <a href="tel:7184848020" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+        Book Now — (718) 484-8020
+      </a>
+      <a href="#services" class="btn btn-outline">View Services</a>
+    </div>
+    <div class="hero-badge reveal">
+      <div class="badge-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      </div>
+      <div class="badge-text">
+        <span>A+ BBB Rating</span>
+        <span>10+ Years of Excellence</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="hero-art"></div>
+    <div class="hero-shape-1"></div>
+    <div class="hero-shape-2"></div>
+    <div class="hero-shape-3"></div>
+    <div class="hero-shape-4"></div>
+    <div class="dots-grid">
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span><span></span>
+    </div>
+    <!-- Central Nail Polish Illustration (pure SVG) -->
+    <div class="hero-polish">
+      <svg width="160" height="280" viewBox="0 0 160 280" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Bottle body -->
+        <rect x="52" y="120" width="56" height="130" rx="10" fill="url(#bottleGrad)"/>
+        <!-- Bottle neck -->
+        <rect x="62" y="90" width="36" height="36" rx="6" fill="url(#neckGrad)"/>
+        <!-- Cap -->
+        <rect x="56" y="52" width="48" height="44" rx="10" fill="url(#capGrad)"/>
+        <!-- Brush handle -->
+        <rect x="76" y="8" width="8" height="50" rx="4" fill="url(#brushHandleGrad)"/>
+        <!-- Highlight on bottle -->
+        <rect x="62" y="130" width="8" height="80" rx="4" fill="rgba(255,255,255,0.25)"/>
+        <!-- Label area -->
+        <rect x="60" y="148" width="40" height="60" rx="6" fill="rgba(255,255,255,0.12)"/>
+        <!-- Label text lines -->
+        <rect x="66" y="158" width="28" height="3" rx="1.5" fill="rgba(255,255,255,0.4)"/>
+        <rect x="68" y="166" width="24" height="2" rx="1" fill="rgba(255,255,255,0.25)"/>
+        <rect x="66" y="174" width="28" height="2" rx="1" fill="rgba(255,255,255,0.25)"/>
+        <!-- Gloss shine on cap -->
+        <ellipse cx="75" cy="64" rx="6" ry="10" fill="rgba(255,255,255,0.2)"/>
+        <defs>
+          <linearGradient id="bottleGrad" x1="52" y1="120" x2="108" y2="250" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#7c5ba0"/>
+            <stop offset="100%" stop-color="#4a2c6e"/>
+          </linearGradient>
+          <linearGradient id="neckGrad" x1="62" y1="90" x2="98" y2="126" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#9a78be"/>
+            <stop offset="100%" stop-color="#6040a0"/>
+          </linearGradient>
+          <linearGradient id="capGrad" x1="56" y1="52" x2="104" y2="96" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#c47a8a"/>
+            <stop offset="100%" stop-color="#a05070"/>
+          </linearGradient>
+          <linearGradient id="brushHandleGrad" x1="80" y1="8" x2="80" y2="58" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#e8b4be"/>
+            <stop offset="100%" stop-color="#c47a8a"/>
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+    <p class="hero-quote">"Your nails, our canvas."</p>
+  </div>
+  <div class="scroll-indicator">
+    <div class="scroll-mouse"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ MARQUEE ══════════════════════ -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marqueeTrack">
+    <div class="marquee-item"><span class="marquee-dot"></span>Gel Manicure</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Acrylic Nails</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Nail Art</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Pedicure</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Dip Powder</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Paraffin Wax</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Gel Polish</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Nail Extensions</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Waxing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Eyebrow Shaping</div>
+    <!-- Duplicate for seamless loop -->
+    <div class="marquee-item"><span class="marquee-dot"></span>Gel Manicure</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Acrylic Nails</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Nail Art</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Pedicure</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Dip Powder</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Paraffin Wax</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Gel Polish</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Nail Extensions</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Waxing</div>
+    <div class="marquee-item"><span class="marquee-dot"></span>Eyebrow Shaping</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════ ABOUT ════════════════════════ -->
+<section class="about section" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-visual reveal-left">
+        <div class="about-card-main">
+          <div class="about-art">
+            <div class="about-art-inner">
+              <div class="nail-shape"></div>
+              <div class="nail-shape"></div>
+              <div class="nail-shape"></div>
+              <div class="nail-shape"></div>
+              <div class="nail-shape"></div>
+              <!-- Polish bottle small -->
+              <div class="polish-bottle">
+                <svg width="50" height="90" viewBox="0 0 160 280" fill="none">
+                  <rect x="52" y="120" width="56" height="130" rx="10" fill="url(#b2)"/>
+                  <rect x="62" y="90" width="36" height="36" rx="6" fill="url(#n2)"/>
+                  <rect x="56" y="52" width="48" height="44" rx="10" fill="url(#c2)"/>
+                  <rect x="76" y="8" width="8" height="50" rx="4" fill="#e8b4be"/>
+                  <rect x="62" y="130" width="8" height="80" rx="4" fill="rgba(255,255,255,0.25)"/>
+                  <defs>
+                    <linearGradient id="b2" x1="52" y1="120" x2="108" y2="250" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#9a78be"/><stop offset="100%" stop-color="#4a2c6e"/>
+                    </linearGradient>
+                    <linearGradient id="n2" x1="62" y1="90" x2="98" y2="126" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#c4a8d8"/><stop offset="100%" stop-color="#7c5ba0"/>
+                    </linearGradient>
+                    <linearGradient id="c2" x1="56" y1="52" x2="104" y2="96" gradientUnits="userSpaceOnUse">
+                      <stop offset="0%" stop-color="#e8b4be"/><stop offset="100%" stop-color="#c47a8a"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="about-floater reveal">
+          <div class="about-floater-number">10+</div>
+          <div class="about-floater-label">Years on Flatbush</div>
+        </div>
+        <div class="about-floater-2 reveal">
+          <div class="about-floater-number">A+</div>
+          <div class="about-floater-label">BBB Rating</div>
+        </div>
+      </div>
+      <div class="about-content reveal-right">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">A Decade of <em>Beauty</em> on Flatbush</h2>
+        <div class="divider"></div>
+        <p class="about-text">
+          Violet Nail Beauty Salon has been a cornerstone of the Flatbush community since 2014. What started as a dream to bring luxury nail care to Brooklyn's most vibrant neighborhood has grown into one of the most trusted beauty destinations in the borough.
+        </p>
+        <p class="about-text">
+          Our team of skilled technicians blends artistry with precision — using only premium, long-lasting products in a clean, calming space designed to make every visit feel like a retreat.
+        </p>
+        <div class="about-pillars stagger">
+          <div class="pillar reveal">
+            <div class="pillar-title">Premium Products</div>
+            <div class="pillar-desc">Only top-tier, salon-grade polishes and treatments.</div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-title">Expert Artistry</div>
+            <div class="pillar-desc">Certified technicians with a passion for nail art.</div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-title">Sanitary Standards</div>
+            <div class="pillar-desc">Medical-grade sterilization on all instruments.</div>
+          </div>
+          <div class="pillar reveal">
+            <div class="pillar-title">Walk-ins Welcome</div>
+            <div class="pillar-desc">No appointment needed — though we do take them.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ SERVICES ═════════════════════════ -->
+<section class="services section" id="services">
+  <div class="container">
+    <div class="services-header reveal">
+      <div class="section-label">Services & Pricing</div>
+      <h2 class="section-title">Crafted for <em>You</em></h2>
+      <div class="divider"></div>
+      <p style="color:var(--mid);font-size:15px;">Every service is a ritual. Every visit, a transformation.</p>
+    </div>
+    <div class="services-grid stagger">
+      <div class="service-card reveal">
+        <div class="service-icon">💅</div>
+        <div class="service-name">Classic Manicure</div>
+        <div class="service-desc">Shape, buff, cuticle care, and your choice of regular polish. A timeless classic.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$18</span>
+        </div>
+      </div>
+      <div class="service-card featured reveal">
+        <div class="service-icon">✨</div>
+        <div class="service-name">Gel Manicure</div>
+        <div class="service-desc">Long-lasting, chip-free gel polish with flawless finish. Our most popular service.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$35</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🌸</div>
+        <div class="service-name">Acrylic Full Set</div>
+        <div class="service-desc">Strong, sculpted extensions built to your desired length and shape.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$45</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🎨</div>
+        <div class="service-name">Nail Art Design</div>
+        <div class="service-desc">Custom hand-painted designs, ombré, chrome powder, gems, and more.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$5<span style="font-size:1rem">/nail</span></span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">🦶</div>
+        <div class="service-name">Spa Pedicure</div>
+        <div class="service-desc">Soak, scrub, massage, and polish. A full foot revival experience.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$45</span>
+        </div>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">💎</div>
+        <div class="service-name">Dip Powder</div>
+        <div class="service-desc">Odor-free, durable powder system. Stronger than gel, lighter than acrylic.</div>
+        <div class="service-price-row">
+          <span class="service-price-from">From</span>
+          <span class="service-price">$40</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ GALLERY ══════════════════════════ -->
+<section class="gallery section" id="gallery">
+  <div class="container">
+    <div class="gallery-header reveal">
+      <div class="section-label">Our Work</div>
+      <h2 class="section-title">The <em>Gallery</em></h2>
+      <div class="divider"></div>
+      <p style="color:var(--mid);font-size:15px;">Every set tells a story. Browse some of our favorite looks.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal">
+        <div class="gallery-art g1">
+          <!-- Abstract nail art pattern -->
+          <svg class="gallery-nail-svg" width="120" height="120" viewBox="0 0 120 120">
+            <ellipse cx="60" cy="60" rx="50" ry="50" stroke="white" stroke-width="1" fill="none"/>
+            <ellipse cx="60" cy="60" rx="35" ry="35" stroke="white" stroke-width="0.5" fill="none"/>
+            <line x1="10" y1="60" x2="110" y2="60" stroke="white" stroke-width="0.5" opacity="0.5"/>
+            <line x1="60" y1="10" x2="60" y2="110" stroke="white" stroke-width="0.5" opacity="0.5"/>
+          </svg>
+          <div class="gallery-art-text">Ombré Violet Set</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-art g2">
+          <svg class="gallery-nail-svg" width="80" height="80" viewBox="0 0 80 80">
+            <path d="M40 5 L75 75 L5 75 Z" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+          </svg>
+          <div class="gallery-art-text">Rose French Tips</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-art g3">
+          <svg class="gallery-nail-svg" width="80" height="80" viewBox="0 0 80 80">
+            <rect x="10" y="10" width="60" height="60" rx="8" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+            <rect x="20" y="20" width="40" height="40" rx="4" stroke="white" stroke-width="0.5" fill="none" opacity="0.3"/>
+          </svg>
+          <div class="gallery-art-text">Deep Violet Gloss</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-art g4">
+          <svg class="gallery-nail-svg" width="90" height="90" viewBox="0 0 90 90">
+            <circle cx="45" cy="45" r="35" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+            <circle cx="45" cy="45" r="20" stroke="white" stroke-width="0.5" fill="none" opacity="0.3"/>
+            <circle cx="45" cy="45" r="5" fill="white" opacity="0.2"/>
+          </svg>
+          <div class="gallery-art-text">Chrome Blush Nails</div>
+        </div>
+      </div>
+      <div class="gallery-item reveal">
+        <div class="gallery-art g5">
+          <svg class="gallery-nail-svg" width="70" height="70" viewBox="0 0 70 70">
+            <path d="M35 5 Q65 35 35 65 Q5 35 35 5Z" stroke="white" stroke-width="0.8" fill="none" opacity="0.4"/>
+          </svg>
+          <div class="gallery-art-text">Lavender Art Design</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ REVIEWS ══════════════════════════ -->
+<section class="reviews section" id="reviews">
+  <div class="container">
+    <div class="reviews-header reveal">
+      <div class="section-label">Client Love</div>
+      <h2 class="section-title">What Brooklyn <em>Says</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="reviews-summary reveal">
+      <div class="reviews-avg">4.9</div>
+      <div>
+        <div class="stars">★★★★★</div>
+        <div class="reviews-meta">
+          <span>Google Rating</span>
+          <span>200+ Reviews · A+ BBB Accredited</span>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-grid stagger">
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          "I've been coming to Violet Nail for 3 years and they never disappoint. The nail art is absolutely gorgeous — every time I walk out I get compliments. The whole team is so warm and welcoming."
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar av1">T</div>
+          <div>
+            <div class="reviewer-name">Tanya M.</div>
+            <div class="reviewer-via">Google Review · Flatbush</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          "Best nail salon in Brooklyn, hands down. My gel manicure lasted over three weeks without chipping. The atmosphere is so peaceful — feels like a real spa escape. I recommend to everyone!"
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar av2">J</div>
+          <div>
+            <div class="reviewer-name">Jasmine R.</div>
+            <div class="reviewer-via">Google Review · Crown Heights</div>
+          </div>
+        </div>
+      </div>
+      <div class="review-card reveal">
+        <div class="stars">★★★★★</div>
+        <p class="review-text">
+          "Discovered this gem on Flatbush and I'm never going anywhere else. They take their time, everything is so clean and professional. My acrylic set looked like it was from a magazine editorial."
+        </p>
+        <div class="reviewer">
+          <div class="reviewer-avatar av3">A</div>
+          <div>
+            <div class="reviewer-name">Amara D.</div>
+            <div class="reviewer-via">Google Review · Prospect Lefferts</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reviews-bbb-center reveal" style="display:flex;justify-content:center;margin-top:0;">
+      <div class="bbb-badge">
+        <div class="bbb-icon">BBB</div>
+        <div class="bbb-badge-text">
+          <strong>BBB Accredited Business</strong>
+          <span>A+ Rating · Zero unresolved complaints</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ TEAM ══════════════════════════════ -->
+<section class="team section" id="team">
+  <div class="container">
+    <div class="team-header reveal">
+      <div class="section-label">The Team</div>
+      <h2 class="section-title">Meet Your <em>Artists</em></h2>
+      <div class="divider"></div>
+    </div>
+    <div class="team-grid stagger">
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <div class="avatar-bg ta1">
+            <span class="avatar-initials">V</span>
+          </div>
+        </div>
+        <div class="team-name">Violet</div>
+        <div class="team-role">Founder & Lead Artist</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <div class="avatar-bg ta2">
+            <span class="avatar-initials">M</span>
+          </div>
+        </div>
+        <div class="team-name">Michelle</div>
+        <div class="team-role">Senior Nail Technician</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <div class="avatar-bg ta3">
+            <span class="avatar-initials">S</span>
+          </div>
+        </div>
+        <div class="team-name">Sophie</div>
+        <div class="team-role">Nail Art Specialist</div>
+      </div>
+      <div class="team-card reveal">
+        <div class="team-avatar">
+          <div class="avatar-bg ta4">
+            <span class="avatar-initials">A</span>
+          </div>
+        </div>
+        <div class="team-name">Angela</div>
+        <div class="team-role">Pedicure & Spa Expert</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ BOOKING/CONTACT ═══════════════════ -->
+<section class="booking" id="contact">
+  <div class="container">
+    <div class="booking-inner">
+      <div class="booking-left reveal-left">
+        <div class="booking-label">Book an Appointment</div>
+        <h2 class="booking-title">Ready for Your<br><em>Perfect Set?</em></h2>
+        <p class="booking-sub">
+          Walk in anytime or call ahead to reserve your spot.
+          We're here to make you feel beautiful — every single visit.
+        </p>
+        <div class="booking-actions">
+          <a href="tel:7184848020" class="btn btn-rose">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+            Call (718) 484-8020
+          </a>
+          <a href="mailto:violet_nail@outlook.com" class="btn btn-outline" style="border-color:rgba(255,255,255,0.35);color:white;">
+            Email Us
+          </a>
+        </div>
+      </div>
+      <div class="booking-info reveal-right">
+        <div class="info-title">Visit Us</div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Address</div>
+            <div class="info-value">700 Flatbush Ave<br>Brooklyn, NY 11225</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Phone</div>
+            <div class="info-value">(718) 484-8020</div>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm.5 5v5.25l4.5 2.67-.75 1.23L11 13V7h1.5z"/></svg>
+          </div>
+          <div>
+            <div class="info-label">Hours</div>
+            <div class="hours-grid">
+              <div class="hours-row"><strong>Mon–Fri</strong><span>10am – 8pm</span></div>
+              <div class="hours-row"><strong>Saturday</strong><span>9am – 7pm</span></div>
+              <div class="hours-row"><strong>Sunday</strong><span>10am – 6pm</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════ FOOTER ════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-name">Violet Nail Beauty</div>
+        <div class="footer-brand-sub">Brooklyn's Premier Nail Studio</div>
+        <p class="footer-brand-desc">
+          Serving the Flatbush community with luxury nail care since 2014.
+          700 Flatbush Ave, Brooklyn NY 11225.
+        </p>
+      </div>
+      <div>
+        <div class="footer-col-title">Quick Links</div>
+        <ul class="footer-links">
+          <li><a href="#about">Our Story</a></li>
+          <li><a href="#services">Services & Pricing</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#reviews">Reviews</a></li>
+          <li><a href="#contact">Book Appointment</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-col-title">Contact</div>
+        <ul class="footer-links">
+          <li><a href="tel:7184848020">(718) 484-8020</a></li>
+          <li><a href="mailto:violet_nail@outlook.com">violet_nail@outlook.com</a></li>
+          <li><a href="#">700 Flatbush Ave, Brooklyn</a></li>
+          <li style="margin-top:16px;">
+            <a href="tel:7184848020" class="btn btn-rose" style="font-size:11px;padding:10px 20px;">Book Now</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-bottom-left">
+        © 2024 Violet Nail Beauty Salon. All rights reserved.<br>
+        Site design by <a href="https://portfolio.nyctailblazers.com">NYC Tailblazers</a> | portfolio.nyctailblazers.com
+      </div>
+      <div class="footer-bottom-right">
+        This website was created with AI-assisted design tools.<br>
+        Content and branding represent the business as provided.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════ SCRIPTS ═══════════════════════════ -->
+<script>
+  // ── Scroll Reveal ────────────────────────────────────────────
+  const revealObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+  );
+
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => {
+    revealObserver.observe(el);
+  });
+
+  // ── Nav Scroll Effect ────────────────────────────────────────
+  const nav = document.getElementById('mainNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // ── Hamburger Menu ───────────────────────────────────────────
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      hamburger.classList.remove('open');
+      mobileMenu.classList.remove('open');
+    });
+  });
+
+  // ── Smooth anchor scroll (offset for fixed nav) ──────────────
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        const offset = 80;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
